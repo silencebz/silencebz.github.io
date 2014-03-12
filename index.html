@@ -12,9 +12,19 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+	<style>
+		body { background-color: #161616; }	
+		@media all and (min-width: 900px) {	
+			#main { width: 900px; margin-left: auto; margin-right: auto; }
+			#ban { width: 100%;  }
+		}	
+		@media all and (max-width: 899px) {
+			#main { width: 200px; }
+		}
+	</style>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -22,11 +32,30 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-       <img src="img/scl.png" /> 
+      	<div id="main">
+		<img id="ban" /> 
+	</div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+	<script>
+		
+		function sizeBan() {
+			if ($('body').innerWidth() > 899) {
+				$('#ban').attr('src', 'img/scl.png');
+			} else {		
+				$('#ban').attr('src', 'img/scp.png'); 
+			}
+		}
+
+		$('document').ready(function() { 
+			sizeBan();	
+			$(window).resize(function() {
+				sizeBan();
+			});	
+		} );
+	</script>
     </body>
 </html>
